@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -29,19 +31,19 @@ export default function Contact() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
           {/* Left Info */}
           <div className="w-full lg:w-[45%]">
-            <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">Contacto</span>
+            <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">{t("contact.badge")}</span>
             <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-6 leading-tight">
-              Fale connosco
+              {t("contact.title")}
             </h2>
             <p className="text-[#6a5a4a] text-base leading-relaxed mb-10">
-              Tem alguma questão sobre os nossos produtos, quer fazer uma encomenda especial ou simplesmente quer saber mais sobre a Vela Mia? Estamos aqui para ajudar!
+              {t("contact.description")}
             </p>
 
             <div className="flex flex-col gap-6">
               {[
-                { icon: 'ri-mail-line', label: 'Email', value: 'velamia_col@gmail.com' },
-                { icon: 'ri-instagram-line', label: 'Instagram', value: '@velamia_pt' },
-                { icon: 'ri-map-pin-line', label: 'Localização', value: 'Portugal & Colombia' },
+                { icon: 'ri-mail-line', label: t("contact.email"), value: 'velamia_col@gmail.com' },
+                { icon: 'ri-instagram-line', label: t("contact.instagram"), value: '@velamia_pt' },
+                { icon: 'ri-map-pin-line', label: t("contact.location"), value: t("contact.location.value") },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4">
                   <div className="w-10 h-10 flex items-center justify-center bg-[#7a8c5e]/10 rounded-full flex-shrink-0">
@@ -72,8 +74,8 @@ export default function Contact() {
                 <div className="w-14 h-14 flex items-center justify-center bg-[#7a8c5e] rounded-full mx-auto mb-4">
                   <i className="ri-check-line text-white text-2xl"></i>
                 </div>
-                <h3 className="font-serif text-2xl text-[#3a2a1e] mb-2">Mensagem enviada!</h3>
-                <p className="text-[#6a5a4a] text-sm">Obrigada pelo seu contacto. Responderemos em breve.</p>
+                <h3 className="font-serif text-2xl text-[#3a2a1e] mb-2">{t("contact.success.title")}</h3>
+                <p className="text-[#6a5a4a] text-sm">{t("contact.success.description")}</p>
               </div>
             ) : (
               <form
@@ -82,58 +84,58 @@ export default function Contact() {
                 onSubmit={handleSubmit}
                 className="bg-white rounded-2xl p-8 md:p-10 flex flex-col gap-5"
               >
-                <h3 className="font-serif text-2xl text-[#3a2a1e] mb-2">Envie-nos uma mensagem</h3>
+                <h3 className="font-serif text-2xl text-[#3a2a1e] mb-2">{t("contact.form.title")}</h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">Nome</label>
+                    <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">{t("contact.form.name")}</label>
                     <input
                       type="text"
                       name="name"
                       required
-                      placeholder="O seu nome"
+                      placeholder={t("contact.form.name.placeholder")}
                       className="w-full px-4 py-3 text-sm bg-[#faf7f2] border border-[#e8e0d5] rounded-xl text-[#3a2a1e] placeholder-[#b0a090] focus:outline-none focus:border-[#7a8c5e] transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">Email</label>
+                    <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">{t("contact.form.email")}</label>
                     <input
                       type="email"
                       name="email"
                       required
-                      placeholder="o.seu@email.com"
+                      placeholder={t("contact.form.email.placeholder")}
                       className="w-full px-4 py-3 text-sm bg-[#faf7f2] border border-[#e8e0d5] rounded-xl text-[#3a2a1e] placeholder-[#b0a090] focus:outline-none focus:border-[#7a8c5e] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">Assunto</label>
+                  <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">{t("contact.form.subject")}</label>
                   <select
                     name="subject"
                     required
                     className="w-full px-4 py-3 text-sm bg-[#faf7f2] border border-[#e8e0d5] rounded-xl text-[#3a2a1e] focus:outline-none focus:border-[#7a8c5e] transition-colors cursor-pointer"
                   >
-                    <option value="">Selecione um assunto</option>
-                    <option value="encomenda">Fazer uma encomenda</option>
-                    <option value="informacao">Informação sobre produtos</option>
-                    <option value="presente">Encomenda especial / Presente</option>
-                    <option value="parceria">Parceria ou colaboração</option>
-                    <option value="outro">Outro</option>
+                    <option value="">{t("contact.form.subject.placeholder")}</option>
+                    <option value="encomenda">{t("contact.form.subject.order")}</option>
+                    <option value="informacao">{t("contact.form.subject.info")}</option>
+                    <option value="presente">{t("contact.form.subject.gift")}</option>
+                    <option value="parceria">{t("contact.form.subject.partnership")}</option>
+                    <option value="outro">{t("contact.form.subject.other")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">Mensagem</label>
+                  <label className="block text-xs text-[#8a7a6a] mb-1.5 font-medium">{t("contact.form.message")}</label>
                   <textarea
                     name="message"
                     required
                     rows={5}
                     maxLength={500}
-                    placeholder="Escreva a sua mensagem aqui..."
+                    placeholder={t("contact.form.message.placeholder")}
                     className="w-full px-4 py-3 text-sm bg-[#faf7f2] border border-[#e8e0d5] rounded-xl text-[#3a2a1e] placeholder-[#b0a090] focus:outline-none focus:border-[#7a8c5e] transition-colors resize-none"
                   />
-                  <p className="text-xs text-[#b0a090] mt-1">Máximo 500 caracteres</p>
+                  <p className="text-xs text-[#b0a090] mt-1">{t("contact.form.charLimit")}</p>
                 </div>
 
                 <button
@@ -141,7 +143,7 @@ export default function Contact() {
                   disabled={loading}
                   className="w-full py-3.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full hover:bg-[#6a7a50] transition-colors duration-200 cursor-pointer whitespace-nowrap disabled:opacity-60"
                 >
-                  {loading ? 'A enviar...' : 'Enviar mensagem'}
+                  {loading ? t("contact.form.sending") : t("contact.form.submit")}
                 </button>
               </form>
             )}

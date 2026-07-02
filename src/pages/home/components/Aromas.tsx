@@ -21,9 +21,12 @@ const aromas = [
   { id: 18, name: 'Citronella', icon: 'ri-bug-line', category: 'Herbal', color: '#9acd32', desc: 'Natural e refrescante, afasta insetos enquanto perfuma o ambiente.' },
 ];
 
-const categories = ['Todos', 'Tropical', 'Frutal', 'Herbal', 'Cítrico', 'Gourmand', 'Suave', 'Aquático', 'Natal'];
+const categoryKeys = ['Todos', 'Tropical', 'Frutal', 'Herbal', 'Cítrico', 'Gourmand', 'Suave', 'Aquático', 'Natal'];
+
+import { useTranslation } from "react-i18next";
 
 export default function Aromas() {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
@@ -36,16 +39,16 @@ export default function Aromas() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="text-center mb-14 md:mb-18">
-          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">Fragrâncias Naturais</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">Os Nossos Aromas</h2>
+          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">{t("aromas.badge")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">{t("aromas.title")}</h2>
           <p className="text-[#8a7a6a] text-base max-w-xl mx-auto leading-relaxed">
-            Cada aroma é cuidadosamente selecionado para criar experiências sensoriais únicas. Descubra a fragrância que fala à sua alma.
+            {t("aromas.description")}
           </p>
         </div>
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((cat) => (
+          {categoryKeys.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -55,7 +58,7 @@ export default function Aromas() {
                   : 'bg-white text-[#7a8c5e] border border-[#7a8c5e]/30 hover:border-[#7a8c5e] hover:bg-[#7a8c5e]/5'
               }`}
             >
-              {cat}
+              {t(`aromas.filter.${cat.toLowerCase()}`)}
             </button>
           ))}
         </div>
@@ -121,7 +124,7 @@ export default function Aromas() {
           <div className="inline-flex items-center gap-3 bg-[#7a8c5e]/10 rounded-full px-6 py-3">
             <i className="ri-information-line text-[#7a8c5e] text-base"></i>
             <p className="text-[#7a8c5e] text-sm">
-              Todos os aromas estão disponíveis em qualquer vela da nossa coleção. Personalize a sua encomenda!
+              {t("aromas.note")}
             </p>
           </div>
         </div>

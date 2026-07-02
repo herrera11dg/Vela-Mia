@@ -37,16 +37,19 @@ const productDetails = [
   },
 ];
 
+import { useTranslation } from "react-i18next";
+
 export default function ProductDetail() {
+  const { t } = useTranslation();
   return (
     <section id="aromas" className="bg-[#f5f0e8] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">Detalhes</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">Sobre cada produto</h2>
+          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">{t("productDetail.badge")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">{t("productDetail.title")}</h2>
           <p className="text-[#8a7a6a] text-base max-w-xl mx-auto leading-relaxed">
-            Conheça em detalhe cada uma das nossas criações artesanais, feitas com os melhores ingredientes naturais. O aroma é sempre à escolha do cliente.
+            {t("productDetail.description")}
           </p>
         </div>
 
@@ -77,11 +80,11 @@ export default function ProductDetail() {
                 {/* Specs */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-xl p-4">
-                    <p className="text-xs text-[#8a7a6a] mb-1">Preço</p>
+                    <p className="text-xs text-[#8a7a6a] mb-1">{t("productDetail.price")}</p>
                     <p className="font-serif text-lg text-[#3a2a1e] font-medium">{product.price}</p>
                   </div>
                   <div className="bg-white rounded-xl p-4">
-                    <p className="text-xs text-[#8a7a6a] mb-1">Duração</p>
+                    <p className="text-xs text-[#8a7a6a] mb-1">{t("productDetail.duration")}</p>
                     <p className="font-serif text-lg text-[#3a2a1e] font-medium">{product.burnTime}</p>
                   </div>
                 </div>
@@ -102,7 +105,7 @@ export default function ProductDetail() {
                   href="#contacto"
                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full hover:bg-[#6a7a50] transition-colors duration-200 cursor-pointer whitespace-nowrap"
                 >
-                  Encomendar agora
+                  {t("productDetail.order")}
                   <i className="ri-arrow-right-line"></i>
                 </a>
               </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -10,12 +12,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const currentLang = i18n.language?.startsWith('es') ? 'es' : 'en';
+
   const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Coleção', href: '#colecao' },
-    { label: 'Aromas', href: '#aromas' },
-    { label: 'Sobre Nós', href: '#sobre' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: t('nav.home'), href: '#inicio' },
+    { label: t('nav.collection'), href: '#colecao' },
+    { label: t('nav.aromas'), href: '#aromas' },
+    { label: t('nav.about'), href: '#sobre' },
+    { label: t('nav.contact'), href: '#contacto' },
   ];
 
   return (
@@ -46,12 +54,35 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="#colecao"
-          className="hidden md:inline-flex items-center px-6 py-2.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full hover:bg-[#6a7a50] transition-colors duration-200 cursor-pointer whitespace-nowrap"
-        >
-          Descubra a Coleção
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          {/* Language Switcher */}
+          <div className="flex items-center gap-1 border border-[#d4c9bc] rounded-full px-2 py-1">
+            <button
+              onClick={() => changeLanguage('es')}
+              className={`px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'es' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] hover:text-[#7a8c5e]'
+              }`}
+            >
+              ES
+            </button>
+            <span className="text-[#d4c9bc] text-xs">|</span>
+            <button
+              onClick={() => changeLanguage('en')}
+              className={`px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'en' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] hover:text-[#7a8c5e]'
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
+          <a
+            href="#colecao"
+            className="inline-flex items-center px-6 py-2.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full hover:bg-[#6a7a50] transition-colors duration-200 cursor-pointer whitespace-nowrap"
+          >
+            {t('nav.cta')}
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -76,12 +107,33 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+
+          {/* Mobile Language Switcher */}
+          <div className="flex items-center gap-2 pt-2 border-t border-[#e8e0d5]">
+            <button
+              onClick={() => { changeLanguage('es'); setMenuOpen(false); }}
+              className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'es' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] border border-[#d4c9bc]'
+              }`}
+            >
+              ES
+            </button>
+            <button
+              onClick={() => { changeLanguage('en'); setMenuOpen(false); }}
+              className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'en' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] border border-[#d4c9bc]'
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <a
             href="#colecao"
             onClick={() => setMenuOpen(false)}
             className="inline-flex items-center justify-center px-6 py-2.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full cursor-pointer whitespace-nowrap"
           >
-            Descubra a Coleção
+            {t('nav.cta')}
           </a>
         </div>
       )}

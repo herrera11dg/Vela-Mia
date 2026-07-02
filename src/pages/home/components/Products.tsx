@@ -229,16 +229,19 @@ const products = [
   },
 ];
 
+import { useTranslation } from "react-i18next";
+
 export default function Products() {
+  const { t } = useTranslation();
   return (
     <section id="colecao" className="bg-[#faf7f2] py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">A Nossa Coleção</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">Os nossos produtos</h2>
+          <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">{t("products.badge")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">{t("products.title")}</h2>
           <p className="text-[#8a7a6a] text-base max-w-xl mx-auto leading-relaxed">
-            Cada peça é criada com intenção, cuidado e materiais naturais selecionados. O aroma é à escolha do cliente.
+            {t("products.description")}
           </p>
         </div>
 
@@ -266,7 +269,7 @@ export default function Products() {
                   href="#contacto"
                   className="inline-flex items-center justify-center w-full py-2.5 bg-[#7a8c5e] text-white text-xs font-medium rounded-full hover:bg-[#6a7a50] transition-colors duration-200 cursor-pointer whitespace-nowrap"
                 >
-                  Encomendar
+                  {t("products.order")}
                 </a>
               </div>
             </div>
@@ -275,12 +278,12 @@ export default function Products() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-14">
-          <p className="text-[#8a7a6a] text-sm mb-4">Quer saber mais sobre os nossos produtos?</p>
+          <p className="text-[#8a7a6a] text-sm mb-4">{t("products.cta.question")}</p>
           <a
             href="#contacto"
             className="inline-flex items-center gap-2 text-[#7a8c5e] text-sm font-medium border-b border-[#7a8c5e] pb-0.5 hover:gap-3 transition-all duration-200 cursor-pointer"
           >
-            Entre em contacto connosco
+            {t("products.cta.link")}
             <i className="ri-arrow-right-line text-base"></i>
           </a>
         </div>

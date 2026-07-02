@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,11 +27,11 @@ export default function Footer() {
   };
 
   const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Coleção', href: '#colecao' },
-    { label: 'Aromas', href: '#aromas' },
-    { label: 'Sobre Nós', href: '#sobre' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: t('nav.home'), href: '#inicio' },
+    { label: t('nav.collection'), href: '#colecao' },
+    { label: t('nav.aromas'), href: '#aromas' },
+    { label: t('nav.about'), href: '#sobre' },
+    { label: t('nav.contact'), href: '#contacto' },
   ];
 
   return (
@@ -44,9 +46,9 @@ export default function Footer() {
               alt="Vela Mia Logo"
               className="h-12 w-auto object-contain mb-3"
             />
-            <p className="text-[#8a7a6a] text-sm italic mb-4">Feito em Portugal</p>
+            <p className="text-[#8a7a6a] text-sm italic mb-4">{t("footer.brand.tagline")}</p>
             <p className="text-[#8a7a6a] text-xs leading-relaxed max-w-xs">
-              Velas artesanais de cera de soja, criadas com amor e ingredientes naturais para iluminar o seu lar.
+              {t("footer.brand.description")}
             </p>
             {/* Social */}
             <div className="flex items-center gap-4 mt-6">
@@ -69,7 +71,7 @@ export default function Footer() {
 
           {/* Center - Navigation */}
           <div className="flex flex-col items-start md:items-center">
-            <h4 className="text-[#3a2a1e] text-sm font-semibold mb-5 tracking-wide">Navegação</h4>
+            <h4 className="text-[#3a2a1e] text-sm font-semibold mb-5 tracking-wide">{t("footer.navigation")}</h4>
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
@@ -85,14 +87,14 @@ export default function Footer() {
 
           {/* Right - Newsletter */}
           <div className="flex flex-col items-start">
-            <h4 className="text-[#3a2a1e] text-sm font-semibold mb-2 tracking-wide">Newsletter</h4>
+            <h4 className="text-[#3a2a1e] text-sm font-semibold mb-2 tracking-wide">{t("footer.newsletter.title")}</h4>
             <p className="text-[#8a7a6a] text-xs leading-relaxed mb-5">
-              Inscreva-se para notícias e ofertas exclusivas
+              {t("footer.newsletter.description")}
             </p>
             {subscribed ? (
               <div className="flex items-center gap-2 text-[#7a8c5e] text-sm">
                 <i className="ri-checkbox-circle-line text-lg"></i>
-                <span>Obrigada por subscrever!</span>
+                <span>{t("footer.newsletter.success")}</span>
               </div>
             ) : (
               <form
@@ -107,7 +109,7 @@ export default function Footer() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="o.seu@email.com"
+                  placeholder={t("footer.newsletter.placeholder")}
                   className="flex-1 px-4 py-2.5 text-xs bg-white border border-[#e8e0d5] rounded-l-full text-[#3a2a1e] placeholder-[#b0a090] focus:outline-none focus:border-[#7a8c5e] transition-colors"
                 />
                 <button
@@ -127,10 +129,10 @@ export default function Footer() {
       <div className="border-t border-[#e8e0d5]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[#b0a090] text-xs">
-            &copy; 2026 Vela Mia. Todos os direitos reservados.
+            {t("footer.copyright")}
           </p>
           <p className="text-[#b0a090] text-xs">
-            Feito com <span className="text-[#7a8c5e]">♥</span> em Portugal
+            {t("footer.madeWith")} <span className="text-[#7a8c5e]">{t("footer.madeWith.heart")}</span> {t("footer.madeIn")}
           </p>
         </div>
       </div>

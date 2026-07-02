@@ -1,38 +1,40 @@
 import { useState } from 'react';
-
-const galleryItems = [
-  {
-    id: 1,
-    src: "https://readdy.ai/api/search-image?query=artisan%20hands%20pouring%20melted%20soy%20wax%20into%20glass%20jar%20candle%20mold%2C%20warm%20golden%20light%2C%20close%20up%20detail%20shot%2C%20natural%20textures%2C%20handmade%20candle%20making%20process%2C%20cream%20ivory%20background%2C%20rustic%20wooden%20table%2C%20craft%20workshop%20atmosphere%2C%20high%20quality%20photography&width=600&height=600&seq=gallery-vela-001&orientation=squarish",
-    alt: "Derramando cera de soja",
-    caption: "O momento mágico de verter a cera ✨",
-    likes: 247,
-    tag: "processo"
-  },
-  {
-    id: 2,
-    src: "https://readdy.ai/api/search-image?query=dried%20botanicals%20flowers%20lavender%20rose%20petals%20arranged%20on%20white%20marble%20surface%20next%20to%20soy%20wax%20candle%2C%20flat%20lay%20photography%2C%20natural%20light%2C%20artisan%20candle%20ingredients%2C%20minimalist%20styling%2C%20soft%20pastel%20tones%2C%20handmade%20craft&width=600&height=600&seq=gallery-vela-002&orientation=squarish",
-    alt: "Ingredientes naturais e botânicos",
-    caption: "Ingredientes 100% naturais e botânicos 🌿",
-    likes: 312,
-    tag: "ingredientes"
-  },
-  {
-    id: 3,
-    src: "https://readdy.ai/api/search-image?query=wooden%20wick%20being%20placed%20carefully%20into%20glass%20candle%20jar%20filled%20with%20creamy%20soy%20wax%2C%20artisan%20hands%20close%20up%2C%20warm%20workshop%20light%2C%20handmade%20candle%20making%2C%20natural%20materials%2C%20craft%20process%20detail%2C%20ivory%20cream%20tones&width=600&height=600&seq=gallery-vela-003&orientation=squarish",
-    alt: "Colocando a mecha de madeira",
-    caption: "Mechas de madeira colocadas com cuidado 🕯️",
-    likes: 189,
-    tag: "processo"
-  }
-];
-
-const tags = ['todos', 'processo', 'ingredientes', 'coleção', 'aromas', 'embalagem', 'lifestyle'];
+import { useTranslation } from "react-i18next";
 
 export default function Gallery() {
+  const { t } = useTranslation();
   const [activeTag, setActiveTag] = useState('todos');
   const [likedItems, setLikedItems] = useState<Set<number>>(new Set());
-  const [lightboxItem, setLightboxItem] = useState<typeof galleryItems[0] | null>(null);
+  const [lightboxItem, setLightboxItem] = useState<{ id: number; src: string; alt: string; caption: string; likes: number; tag: string } | null>(null);
+
+  const tagKeys = ['todos', 'processo', 'ingredientes', 'coleção', 'aromas', 'embalagem', 'lifestyle'];
+
+  const galleryItems = [
+    {
+      id: 1,
+      src: "https://readdy.ai/api/search-image?query=artisan%20hands%20pouring%20melted%20soy%20wax%20into%20glass%20jar%20candle%20mold%2C%20warm%20golden%20light%2C%20close%20up%20detail%20shot%2C%20natural%20textures%2C%20handmade%20candle%20making%20process%2C%20cream%20ivory%20background%2C%20rustic%20wooden%20table%2C%20craft%20workshop%20atmosphere%2C%20high%20quality%20photography&width=600&height=600&seq=gallery-vela-001&orientation=squarish",
+      alt: "Derramando cera de soja",
+      caption: t("gallery.caption.pouring"),
+      likes: 247,
+      tag: "processo"
+    },
+    {
+      id: 2,
+      src: "https://readdy.ai/api/search-image?query=dried%20botanicals%20flowers%20lavender%20rose%20petals%20arranged%20on%20white%20marble%20surface%20next%20to%20soy%20wax%20candle%2C%20flat%20lay%20photography%2C%20natural%20light%2C%20artisan%20candle%20ingredients%2C%20minimalist%20styling%2C%20soft%20pastel%20tones%2C%20handmade%20craft&width=600&height=600&seq=gallery-vela-002&orientation=squarish",
+      alt: "Ingredientes naturais e botânicos",
+      caption: t("gallery.caption.ingredients"),
+      likes: 312,
+      tag: "ingredientes"
+    },
+    {
+      id: 3,
+      src: "https://readdy.ai/api/search-image?query=wooden%20wick%20being%20placed%20carefully%20into%20glass%20candle%20jar%20filled%20with%20creamy%20soy%20wax%2C%20artisan%20hands%20close%20up%2C%20warm%20workshop%20light%2C%20handmade%20candle%20making%2C%20natural%20materials%2C%20craft%20process%20detail%2C%20ivory%20cream%20tones&width=600&height=600&seq=gallery-vela-003&orientation=squarish",
+      alt: "Colocando a mecha de madeira",
+      caption: t("gallery.caption.wick"),
+      likes: 189,
+      tag: "processo"
+    }
+  ];
 
   const filtered = activeTag === 'todos'
     ? galleryItems
@@ -54,13 +56,13 @@ export default function Gallery() {
         {/* Header */}
         <div className="text-center mb-14">
           <span className="text-xs tracking-[0.3em] text-[#7a8c5e] uppercase font-medium">
-            @velamia.pt
+            {t("gallery.badge")}
           </span>
           <h2 className="font-serif text-4xl md:text-5xl text-[#3a2a1e] mt-3 mb-4">
-            O Nosso Processo
+            {t("gallery.title")}
           </h2>
           <p className="text-[#8a7a6a] text-base max-w-xl mx-auto leading-relaxed">
-            Cada vela nasce de um processo artesanal cuidadoso. Espreitamos os bastidores da nossa criação.
+            {t("gallery.description")}
           </p>
 
           {/* Instagram handle badge */}
@@ -69,13 +71,13 @@ export default function Gallery() {
             className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 border border-[#d4c9bc] rounded-full text-sm text-[#6a5a4a] hover:border-[#7a8c5e] hover:text-[#7a8c5e] transition-all duration-300 cursor-pointer"
           >
             <i className="ri-instagram-line text-base"></i>
-            <span>Siga-nos no Instagram</span>
+            <span>{t("gallery.instagram")}</span>
           </a>
         </div>
 
         {/* Filter Tags */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {tags.map(tag => (
+          {tagKeys.map(tag => (
             <button
               key={tag}
               onClick={() => setActiveTag(tag)}
@@ -85,7 +87,7 @@ export default function Gallery() {
                   : 'bg-white border border-[#d4c9bc] text-[#6a5a4a] hover:border-[#7a8c5e] hover:text-[#7a8c5e]'
               }`}
             >
-              {tag === 'todos' ? 'Todos' : tag.charAt(0).toUpperCase() + tag.slice(1)}
+               {t(`gallery.filter.${tag === 'todos' ? 'all' : tag}`)}
             </button>
           ))}
         </div>
@@ -141,14 +143,14 @@ export default function Gallery() {
         {/* Bottom CTA */}
         <div className="text-center mt-14">
           <p className="text-[#8a7a6a] text-sm mb-5">
-            Partilhe a sua Vela Mia com <strong className="text-[#7a8c5e]">#VelaMia</strong> e apareça aqui
+            {t("gallery.cta")} <strong className="text-[#7a8c5e]">{t("gallery.cta.hashtag")}</strong> {t("gallery.cta.suffix")}
           </p>
           <a
             href="#colecao"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#7a8c5e] text-white text-sm font-medium rounded-full hover:bg-[#6a7a50] transition-all duration-300 cursor-pointer whitespace-nowrap"
           >
             <i className="ri-shopping-bag-line"></i>
-            Descubra a Coleção
+            {t("gallery.cta.button")}
           </a>
         </div>
       </div>
@@ -170,7 +172,7 @@ export default function Gallery() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#3a2a1e]">velamia.pt</p>
-                <p className="text-xs text-[#8a7a6a]">Portugal</p>
+                <p className="text-xs text-[#8a7a6a]">{t("gallery.lightbox.location")}</p>
               </div>
               <button
                 onClick={() => setLightboxItem(null)}
@@ -206,7 +208,7 @@ export default function Gallery() {
                 </div>
               </div>
               <p className="text-sm font-semibold text-[#3a2a1e] mb-1">
-                {likedItems.has(lightboxItem.id) ? lightboxItem.likes + 1 : lightboxItem.likes} gostos
+                {likedItems.has(lightboxItem.id) ? lightboxItem.likes + 1 : lightboxItem.likes} {t("gallery.likes")}
               </p>
               <p className="text-sm text-[#3a2a1e]">
                 <span className="font-semibold">velamia.pt</span>{' '}
