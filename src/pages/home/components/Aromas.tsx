@@ -21,7 +21,7 @@ const aromas = [
   { id: 18, name: 'Citronella', icon: 'ri-bug-line', category: 'Herbal', color: '#9acd32', desc: 'Natural e refrescante, afasta insetos enquanto perfuma o ambiente.' },
 ];
 
-const categoryKeys = ['Todos', 'Tropical', 'Frutal', 'Herbal', 'Cítrico', 'Gourmand', 'Suave', 'Aquático', 'Natal'];
+const categoryKeys = ['todos', 'tropical', 'frutal', 'herbal', 'citrico', 'gourmand', 'suave', 'aquatico', 'natal'];
 
 import { useTranslation } from "react-i18next";
 
@@ -30,9 +30,15 @@ export default function Aromas() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  const filtered = activeCategory === 'Todos'
+  const catMap: Record<string, string> = {
+    todos: 'Todos', tropical: 'Tropical', frutal: 'Frutal', herbal: 'Herbal',
+    citrico: 'Cítrico', gourmand: 'Gourmand', suave: 'Suave',
+    aquatico: 'Aquático', natal: 'Natal'
+  };
+
+  const filtered = activeCategory === 'todos'
     ? aromas
-    : aromas.filter((a) => a.category === activeCategory);
+    : aromas.filter((a) => a.category === catMap[activeCategory]);
 
   return (
     <section id="aromas" className="bg-[#faf7f2] py-24 md:py-32">
@@ -58,7 +64,7 @@ export default function Aromas() {
                   : 'bg-white text-[#7a8c5e] border border-[#7a8c5e]/30 hover:border-[#7a8c5e] hover:bg-[#7a8c5e]/5'
               }`}
             >
-              {t(`aromas.filter.${cat.toLowerCase()}`)}
+              {t(`aromas.filter.${cat}`)}
             </button>
           ))}
         </div>

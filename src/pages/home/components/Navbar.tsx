@@ -16,7 +16,7 @@ export default function Navbar() {
     i18n.changeLanguage(lng);
   };
 
-  const currentLang = i18n.language?.startsWith('es') ? 'es' : 'en';
+  const currentLang = i18n.language?.startsWith('pt') ? 'pt' : i18n.language?.startsWith('es') ? 'es' : 'en';
 
   const navLinks = [
     { label: t('nav.home'), href: '#inicio' },
@@ -57,6 +57,15 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           {/* Language Switcher */}
           <div className="flex items-center gap-1 border border-[#d4c9bc] rounded-full px-2 py-1">
+            <button
+              onClick={() => changeLanguage('pt')}
+              className={`px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'pt' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] hover:text-[#7a8c5e]'
+              }`}
+            >
+              PT
+            </button>
+            <span className="text-[#d4c9bc] text-xs">|</span>
             <button
               onClick={() => changeLanguage('es')}
               className={`px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
@@ -110,6 +119,14 @@ export default function Navbar() {
 
           {/* Mobile Language Switcher */}
           <div className="flex items-center gap-2 pt-2 border-t border-[#e8e0d5]">
+            <button
+              onClick={() => { changeLanguage('pt'); setMenuOpen(false); }}
+              className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
+                currentLang === 'pt' ? 'bg-[#7a8c5e] text-white' : 'text-[#6a5a4a] border border-[#d4c9bc]'
+              }`}
+            >
+              PT
+            </button>
             <button
               onClick={() => { changeLanguage('es'); setMenuOpen(false); }}
               className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 cursor-pointer ${
