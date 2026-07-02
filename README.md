@@ -1,12 +1,12 @@
-# Vela Mía 🕯️
+# Vela Mía
 
 Bienvenido al repositorio oficial de **Vela Mía**, un proyecto de software enfocado en el comercio electrónico de velas artesanales de cera de soja. Este proyecto ha sido desarrollado como parte del programa de Análisis y Desarrollo de Software (ADSO) del SENA.
 
-## 📖 Acerca del Proyecto
+## Acerca del Proyecto
 
 Vela Mía es una iniciativa que busca ofrecer una experiencia digital intuitiva y elegante para la exhibición y venta de productos artesanales. El aplicativo está diseñado con un enfoque en la usabilidad (UX/UI), utilizando patrones de diseño modernos y colores orgánicos que reflejan la identidad natural de la marca.
 
-## 🚀 Características Principales
+## Características Principales
 
 - **Interfaz Web Responsiva:** Maquetación estructurada semánticamente para la presentación del catálogo de productos.
 - **Diseño Unificado:** Implementación de un sistema de diseño propio basado en tonos tierra, tipografías legibles y el modelo Flexbox para un layout limpio.
@@ -17,7 +17,7 @@ Vela Mía es una iniciativa que busca ofrecer una experiencia digital intuitiva 
 - **Newsletter:** Captura de emails para suscripción de noticias y ofertas exclusivas.
 - **Internacionalización:** Sistema de traducción listo para múltiples idiomas (i18n).
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Frontend:** React 19, TypeScript
 - **Estilos:** Tailwind CSS
@@ -27,7 +27,7 @@ Vela Mía es una iniciativa que busca ofrecer una experiencia digital intuitiva 
 - **Iconos:** Remixicon, Lucide React
 - **Control de Versiones:** Git & GitHub
 
-## ⚙️ Instrucciones de Ejecución
+## Instrucciones de Ejecución
 
 ### Requisitos previos
 
@@ -64,16 +64,16 @@ Vela Mía es una iniciativa que busca ofrecer una experiencia digital intuitiva 
 | `npm run lint` | Ejecuta el linter ESLint |
 | `npm run type-check` | Verifica tipos de TypeScript |
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 src/
-├── i18n/              # Configuración de internacionalización
+├── i18n/
 │   ├── index.ts
 │   └── local/
 ├── pages/
 │   ├── home/
-│   │   ├── components/ # Componentes de la página principal
+│   │   ├── components/
 │   │   │   ├── Navbar.tsx
 │   │   │   ├── Hero.tsx
 │   │   │   ├── About.tsx
@@ -85,7 +85,7 @@ src/
 │   │   │   └── Footer.tsx
 │   │   └── page.tsx
 │   └── NotFound.tsx
-├── router/            # Configuración de rutas
+├── router/
 │   ├── config.tsx
 │   └── index.ts
 ├── App.tsx
@@ -93,12 +93,12 @@ src/
 └── index.css
 ```
 
-## 👨‍💻 Autor
+## Autor
 
 **Daniel Said Herrera Galeano**
 - Programa: Análisis y Desarrollo de Software (ADSO)
 - Ficha: 3235869
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto es de uso académico y educativo.
